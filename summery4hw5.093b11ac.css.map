@@ -1,0 +1,1 @@
+{"mappings":"ACAA","sources":["summery4hw5.093b11ac.css","src/style.css"],"sourcesContent":["#sales-chart {\n  width: 100%;\n  max-width: 800px;\n}\n/*# sourceMappingURL=summery4hw5.093b11ac.css.map */\n","#sales-chart{width: 100%; max-width: 800px;}"],"names":[],"version":3,"file":"summery4hw5.093b11ac.css.map"}
