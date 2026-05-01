@@ -717,7 +717,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _core = require("@pnotify/core");
 var _pnotifyCss = require("@pnotify/core/dist/PNotify.css");
-var _brightThemeCss = require("@pnotify/core/dist/BrightTheme.css");
+var _brightThemeCss = require("@pnotify/core/dist/BrightTheme.css"); // Обов'язково для відображення!
 //================================================
 var _auto = require("chart.js/auto");
 var _autoDefault = parcelHelpers.interopDefault(_auto);
@@ -736,7 +736,10 @@ const keys = [
 ];
 let current = 0;
 const el = document.querySelector('#key');
-const setKey = ()=>el.textContent = keys[current];
+const btn = document.querySelector('#new-game');
+const setKey = ()=>{
+    if (el) el.textContent = keys[current];
+};
 window.addEventListener('keydown', ({ key })=>{
     const pressed = key.toLowerCase();
     if (!keys.includes(pressed)) return;
@@ -744,17 +747,17 @@ window.addEventListener('keydown', ({ key })=>{
         current = Math.floor(Math.random() * keys.length);
         setKey();
         (0, _core.success)({
-            text: "True"
+            text: "\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u043E!"
         });
     } else (0, _core.error)({
-        text: "False!"
+        text: "\u0421\u043F\u0440\u043E\u0431\u0443\u0439 \u0449\u0435 \u0440\u0430\u0437!"
     });
 });
-document.querySelector('#new-game').onclick = ()=>{
+if (btn) btn.onclick = ()=>{
     current = Math.floor(Math.random() * keys.length);
     setKey();
     (0, _core.success)({
-        text: "New Game"
+        text: "\u0413\u0440\u0443 \u043E\u043D\u043E\u0432\u043B\u0435\u043D\u043E"
     });
 };
 setKey();
