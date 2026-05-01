@@ -1,35 +1,41 @@
 import { error, success, defaults } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
-import '@pnotify/core/dist/BrightTheme.css';
+import '@pnotify/core/dist/BrightTheme.css'; // Обов'язково для відображення!
 
 defaults.delay = 1000;
+
 const keys = ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';'];
 let current = 0;
 
 const el = document.querySelector('#key');
-const setKey = () => el.textContent = keys[current];
+const btn = document.querySelector('#new-game');
 
-window.addEventListener('keydown', ({ key }) => {
-  const pressed = key.toLowerCase();
-  if (!keys.includes(pressed)) return;
-
-  if (pressed === keys[current]) {
-    current = Math.floor(Math.random() * keys.length);
-    setKey();
-    success({ text: "True" });
-  } else {
-    error({ text: "False!" });
-  }
-});
-
-document.querySelector('#new-game').onclick = () => {
-  current = Math.floor(Math.random() * keys.length);
-  setKey();
-  success({ text: "New Game" });
+const setKey = () => {
+    if (el) el.textContent = keys[current];
 };
 
-setKey();
+window.addEventListener('keydown', ({ key }) => {
+    const pressed = key.toLowerCase();
+    if (!keys.includes(pressed)) return;
 
+    if (pressed === keys[current]) {
+        current = Math.floor(Math.random() * keys.length);
+        setKey();
+        success({ text: "Правильно!" });
+    } else {
+        error({ text: "Спробуй ще раз!" });
+    }
+});
+
+if (btn) {
+    btn.onclick = () => {
+        current = Math.floor(Math.random() * keys.length);
+        setKey();
+        success({ text: "Гру оновлено" });
+    };
+}
+
+setKey();
 
 
 //================================================
